@@ -1,0 +1,78 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model TipoDocumento {
+  id            Int             @id @default(autoincrement())
+  tag           String
+  descripcion   String
+  Cliente       Cliente[]
+  recepcionista Recepcionista[]
+}
+
+model Cliente {
+  id            Int           @id @default(autoincrement())
+  nombres       String
+  apellidos     String
+  tipoDoc       Int
+  numDoc        String        @unique
+  sexo          String
+  telefono      Int
+  email         String        @unique
+  tipoDocumento TipoDocumento @relation(fields: [tipoDoc], references: [id])
+  Reserva       Reserva[]
+}
+
+model Recepcionista {
+  id            Int           @id @default(autoincrement())
+  nombres       String
+  apellidos     String
+  tipoDoc       Int
+  numDoc        String        @unique
+  tipoDocumento TipoDocumento @relation(fields: [tipoDoc], references: [id])
+  Reserva       Reserva[]
+}
+
+model TipoHabitacion {
+  id          Int          @id @default(autoincrement())
+  tag         String
+  descripcion String
+  precio      Decimal
+  habitacion  Habitacion[]
+}
+
+model Habitacion {
+  id               Int            @id @default(autoincrement())
+  numHabitacion    String         @unique
+  estado           Boolean        @default(true)
+  idTipoHabitacion Int
+  tipoHabitacion   TipoHabitacion @relation(fields: [idTipoHabitacion], references: [id])
+  Reserva          Reserva[]
+}
+
+model Reserva {
+  id              Int           @id @default(autoincrement())
+  idCliente       Int
+  idHabitacion    Int
+  idRecepcionista Int
+  fechaInicio     DateTime
+  fechaFin        DateTime
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+  cliente         Cliente       @relation(fields: [idCliente], references: [id])
+  habitacion      Habitacion    @relation(fields: [idHabitacion], references: [id])
+  recepcionista   Recepcionista @relation(fields: [idRecepcionista], references: [id])
+}
+
+model Test {
+  id     Int    @id @default(autoincrement())
+  nombre String
+}
