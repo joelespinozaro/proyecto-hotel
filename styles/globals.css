@@ -14,3 +14,18 @@ a {
 * {
   box-sizing: border-box;
 }
+
+.textHeader {
+  font-size: 17px;
+  letter-spacing: 0.4em;
+  color: #d74346;
+  text-transform: uppercase;
+  text-align: center;
+  padding-top: 2em;
+}
+select{
+  height: 38px;
+  border: 1px solid #ced4d9;
+  border-radius: 4px;
+  width: 100%;
+}
