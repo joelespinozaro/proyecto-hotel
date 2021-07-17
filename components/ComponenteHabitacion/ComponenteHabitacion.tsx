@@ -1,62 +1,86 @@
-import React, { useState } from 'react'
-import { Button, Col, Form, Row, } from 'react-bootstrap'
-import prisma from '../../lib/prisma'
+import { GetServerSideProps } from "next";
+import React, { useState } from "react";
+import { Button, Col, Form, Row } from "react-bootstrap";
+import prisma from "../../lib/prisma";
 
-const ComponenteHabitacion = () => {
+type TipoHabitacion = "SIMPLE" | "DOBLE" | "MATRIMONIAL";
 
-    const [numeroHabitacion, setNumeroHabitacion] = useState(null)
-    const [tipoHabitacion, setTipoHabitacion] = useState(null)
+const ComponenteHabitacion = (props) => {
+  const [numeroHabitacion, setNumeroHabitacion] = useState("null");
+  const [tipoHabitacion, setTipoHabitacion] =
+    useState<TipoHabitacion>("SIMPLE");
+  const [precio, setPrecio] = useState(0);
 
-    const agregarHabitacion = async () => {
-        // Creating a new record
-        // const resolve = await prisma.user.create({
-        //     numHabitacion: numeroHabitacion,
-        //     idTipoHabitacion: tipoHabitacion,
-        //     tipoHabitacion
-        // })
-
+  const agregarHabitacion = async () => {
+    // creating a new record
+    try {
+      const body = { numeroHabitacion, tipoHabitacion, precio };
+      const result = await fetch("/api/habitacion/new", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+      });
+      console.log(result);
+    } catch (error) {
+      console.error(error);
     }
+  };
 
-    return (
-        <div className="container">
-            <h1 className="textHeader">
-                agregar nueva habitacion
-            </h1>
-            <Form className="mt-5">
-                <Row>
-                    <Col>
-                        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                            <Form.Label>Numero de habitacion</Form.Label>
-                            <Form.Control
-                                type="number"
-                                placeholder="Agregar numero de habitacion"
-                                onChange={(e: any) => {
-                                    setNumeroHabitacion(e.target.value)
-                                }} />
-                        </Form.Group>
-                    </Col>
-                    <Col>
-                        <Form.Label>Tipo de habitacion</Form.Label>
-                        <br></br>
+  return (
+    <div className="container">
+      <h1 className="textHeader">agregar nueva habitación</h1>
+      <Form className="mt-5">
+        <Row>
+          <Col>
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+              <Form.Label>Numero de habitación</Form.Label>
+              <Form.Control
+                type="number"
+                placeholder="Agregar numero de habitacion"
+                onChange={(e: any) => {
+                  setNumeroHabitacion(e.target.value);
+                }}
+              />
+            </Form.Group>
+          </Col>
+          <Col>
+            <Form.Label>Tipo de habitación</Form.Label>
+            <br></br>
 
-                        <select aria-label="Default select example"
-                            onChange={(e: any) => {
-                                setTipoHabitacion(e.target.value)
-                            }}
-                        >
-                            <option value="1">Matrimonial</option>
-                            <option value="2">Presidencial</option>
-                            <option value="3">Clasico</option>
-                        </select>
-                    </Col>
-                </Row>
-                <Row className="ml-1">
-                    <Button onClick={agregarHabitacion}>Agregar Habitacion</Button>
-                </Row>
+            <select
+              aria-label="Default select example"
+              onChange={(e: any) => {
+                setTipoHabitacion(e.target.value);
+              }}
+            >
+              <option value="SIMPLE">SIMPLE</option>
+              <option value="DOBLE">DOBLE</option>
+              <option value="MATRIMONIAL">MATRIMONIAL</option>
+            </select>
+          </Col>
+        </Row>
+        <Row>
+          <Col md={6}>
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+              <Form.Label>Precio</Form.Label>
+              <Form.Control
+                type="number"
+                placeholder="Agregar precio"
+                onChange={(e: any) => {
+                  setPrecio(e.target.value);
+                }}
+              />
+            </Form.Group>
+          </Col>
+        </Row>
+        <Row className="ml-1">
+          <Button onClick={agregarHabitacion}>Agregar Habitación</Button>
+        </Row>
+      </Form>
 
-            </Form>
-        </div>
-    )
-}
+      {JSON.stringify(props)}
+    </div>
+  );
+};
 
-export default ComponenteHabitacion
+export default ComponenteHabitacion;

@@ -10,59 +10,54 @@ generator client {
   provider = "prisma-client-js"
 }
 
-model TipoDocumento {
-  id            Int             @id @default(autoincrement())
-  tag           String
-  descripcion   String
-  Cliente       Cliente[]
-  recepcionista Recepcionista[]
+enum TipoDocumento {
+  DNI
+  CEX
+  RUC
+  PASAPORTE
 }
 
 model Cliente {
-  id            Int           @id @default(autoincrement())
+  id            String        @id @default(uuid())
   nombres       String
   apellidos     String
-  tipoDoc       Int
   numDoc        String        @unique
   sexo          String
   telefono      Int
   email         String        @unique
-  tipoDocumento TipoDocumento @relation(fields: [tipoDoc], references: [id])
+  tipoDocumento TipoDocumento
   Reserva       Reserva[]
 }
 
 model Recepcionista {
-  id            Int           @id @default(autoincrement())
+  id            String        @id @default(uuid())
   nombres       String
   apellidos     String
-  tipoDoc       Int
   numDoc        String        @unique
-  tipoDocumento TipoDocumento @relation(fields: [tipoDoc], references: [id])
+  tipoDocumento TipoDocumento
   Reserva       Reserva[]
 }
 
-model TipoHabitacion {
-  id          Int          @id @default(autoincrement())
-  tag         String
-  descripcion String
-  precio      Decimal
-  habitacion  Habitacion[]
+enum TipoHabitacion {
+  SIMPLE
+  DOBLE
+  MATRIMONIAL
 }
 
 model Habitacion {
-  id               Int            @id @default(autoincrement())
-  numHabitacion    String         @unique
-  estado           Boolean        @default(true)
-  idTipoHabitacion Int
-  tipoHabitacion   TipoHabitacion @relation(fields: [idTipoHabitacion], references: [id])
-  Reserva          Reserva[]
+  id             String         @id @default(uuid())
+  numHabitacion  String         @unique
+  estado         Boolean        @default(true)
+  precio         Float
+  tipoHabitacion TipoHabitacion
+  Reserva        Reserva[]
 }
 
 model Reserva {
-  id              Int           @id @default(autoincrement())
-  idCliente       Int
-  idHabitacion    Int
-  idRecepcionista Int
+  id              String        @id @default(uuid())
+  idCliente       String
+  idHabitacion    String
+  idRecepcionista String
   fechaInicio     DateTime
   fechaFin        DateTime
   createdAt       DateTime      @default(now())
@@ -76,3 +71,5 @@ model Test {
   id     Int    @id @default(autoincrement())
   nombre String
 }
+
+//TODO completar todos los modelos de la bd
