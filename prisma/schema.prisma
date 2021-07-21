@@ -58,8 +58,8 @@ model Reserva {
   idCliente       String
   idHabitacion    String
   idRecepcionista String
-  fechaInicio     DateTime
-  fechaFin        DateTime
+  fechaInicio     String
+  fechaFin        String
   createdAt       DateTime      @default(now())
   updatedAt       DateTime      @updatedAt
   cliente         Cliente       @relation(fields: [idCliente], references: [id])

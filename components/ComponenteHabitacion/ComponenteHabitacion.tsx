@@ -5,22 +5,23 @@ import prisma from "../../lib/prisma";
 
 type TipoHabitacion = "SIMPLE" | "DOBLE" | "MATRIMONIAL";
 
-const ComponenteHabitacion = (props) => {
-  const [numeroHabitacion, setNumeroHabitacion] = useState("null");
+const ComponenteHabitacion = ({ hadleSuccess, habitacion = null }) => {
+
+  const [numeroHabitacion, setNumeroHabitacion] = useState(habitacion?.numHabitacion || "null");
   const [tipoHabitacion, setTipoHabitacion] =
-    useState<TipoHabitacion>("SIMPLE");
-  const [precio, setPrecio] = useState(0);
+    useState<TipoHabitacion>(habitacion?.tipoHabitacion || "SIMPLE");
+  const [precio, setPrecio] = useState(habitacion?.precio || 0);
 
   const agregarHabitacion = async () => {
     // creating a new record
     try {
-      const body = { numeroHabitacion, tipoHabitacion, precio };
-      const result = await fetch("/api/habitacion/new", {
+      const body = { numeroHabitacion, tipoHabitacion, precio, id: habitacion?.id || null };
+      const result = await fetch(`/api/habitacion/${habitacion? "update" : "new"}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
       });
-      console.log(result);
+      hadleSuccess(result)
     } catch (error) {
       console.error(error);
     }
@@ -28,7 +29,7 @@ const ComponenteHabitacion = (props) => {
 
   return (
     <div className="container">
-      <h1 className="textHeader">agregar nueva habitación</h1>
+      <h1 className="textHeader">{habitacion ? "Editar" : "agregar nueva"} habitación</h1>
       <Form className="mt-5">
         <Row>
           <Col>
@@ -37,6 +38,7 @@ const ComponenteHabitacion = (props) => {
               <Form.Control
                 type="number"
                 placeholder="Agregar numero de habitacion"
+                value={numeroHabitacion}
                 onChange={(e: any) => {
                   setNumeroHabitacion(e.target.value);
                 }}
@@ -49,6 +51,7 @@ const ComponenteHabitacion = (props) => {
 
             <select
               aria-label="Default select example"
+              value={tipoHabitacion}
               onChange={(e: any) => {
                 setTipoHabitacion(e.target.value);
               }}
@@ -64,6 +67,7 @@ const ComponenteHabitacion = (props) => {
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>Precio</Form.Label>
               <Form.Control
+                value={precio}
                 type="number"
                 placeholder="Agregar precio"
                 onChange={(e: any) => {
@@ -74,11 +78,9 @@ const ComponenteHabitacion = (props) => {
           </Col>
         </Row>
         <Row className="ml-1">
-          <Button onClick={agregarHabitacion}>Agregar Habitación</Button>
+          <Button onClick={agregarHabitacion}>{habitacion ? "Editar" : "Agregar"} Habitación</Button>
         </Row>
       </Form>
-
-      {JSON.stringify(props)}
     </div>
   );
 };

@@ -23,7 +23,7 @@ a {
   text-align: center;
   padding-top: 2em;
 }
-select{
+select,input{
   height: 38px;
   border: 1px solid #ced4d9;
   border-radius: 4px;

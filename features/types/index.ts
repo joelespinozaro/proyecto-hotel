@@ -36,8 +36,8 @@ export interface Reserva {
   idCliente: string;
   idHabitacion: string;
   idRecepcionista: string;
-  fechaInicio: Date;
-  fechaFin: Date;
+  fechaInicio: string;
+  fechaFin: string;
   createdAt: Date;
   updatedAt: Date;
   cliente: Cliente[] | null;
