@@ -5,7 +5,7 @@ export interface Cliente {
   id: string;
   nombres: string;
   apellidos: string;
-  numdoc: string;
+  numDoc: string;
   sexo: string;
   telefono: number;
   email: string;
@@ -44,5 +44,11 @@ export interface Reserva {
   habitacion: Habitacion[] | null;
   recepcionista: Recepcionista[] | null;
 }
+
+export type Navigation = {
+  name: string;
+  href: string;
+  current: boolean;
+};
 
 //TODO completar los types de los modelos de la db

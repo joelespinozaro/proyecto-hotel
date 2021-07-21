@@ -67,9 +67,4 @@ model Reserva {
   recepcionista   Recepcionista @relation(fields: [idRecepcionista], references: [id])
 }
 
-model Test {
-  id     Int    @id @default(autoincrement())
-  nombre String
-}
-
 //TODO completar todos los modelos de la bd

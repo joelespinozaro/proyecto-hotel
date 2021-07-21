@@ -1,32 +1,23 @@
-import { GetServerSideProps, GetStaticProps } from "next";
-import prisma from "../lib/prisma";
-import { Cliente } from "../types";
-import Titulo from "../components/Titulo";
-import ComponenteHabitacion from "../components/ComponenteHabitacion/ComponenteHabitacion";
-import ComponenteCliente from "../components/ComponenteCliente/ComponenteCliente";
-import ComponenteRecepcionista from "../components/ComponenteRecepcionista/ComponenteRecepcionista";
+import Link from "next/link";
+import { Nav } from "react-bootstrap";
 
-type HomeProps = {
-  clientes: Cliente[];
-};
+const navigation = [
+  { name: "Home", href: "/", current: false },
+  { name: "Company", href: "/client", current: false },
+];
 
-export default function Home({ habitaciones }) {
+export default function Home() {
   return (
     <div>
-      <ComponenteHabitacion habitaciones={habitaciones} />
+      <ul>
+        {navigation.map((item) => (
+          <li key={item.name}>
+            <Link href={item.href} as={item.href} passHref>
+              <Nav.Link href="#">{item.name}</Nav.Link>
+            </Link>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
-
-export const getServerSideProps: GetServerSideProps = async ({ params }) => {
-  // Call an external API endpoint to get habitaciones
-  const habitaciones = await prisma.habitacion.findMany({
-    where: { estado: true },
-  });
-
-  return {
-    props: {
-      habitaciones,
-    },
-  };
-};
