@@ -39,6 +39,14 @@ export default function GenerarReservaPage({ habitacion, clientes, reserva }) {
                 fechaFin: fechaFin,
                 id: reserva?.id || null
             };
+            const resultS = await fetch(`/api/habitacion/updateStatus`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    id : habitacion.id,
+                    estado : false
+                }),
+            });
             const result = await fetch(`/api/reservas/${reserva ? "update" : "new"}`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },

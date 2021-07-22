@@ -44,6 +44,7 @@ model Reserva {
   idRecepcionista String
   fechaInicio     String
   fechaFin        String
+  estado          Boolean       @default(true)
   createdAt       DateTime      @default(now())
   updatedAt       DateTime      @updatedAt
   cliente         Cliente       @relation(fields: [idCliente], references: [id])

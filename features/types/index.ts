@@ -40,6 +40,7 @@ export interface Reserva {
   fechaFin: string;
   createdAt: Date;
   updatedAt: Date;
+  estado: boolean;
   cliente: Cliente[] | null;
   habitacion: Habitacion[] | null;
   recepcionista: Recepcionista[] | null;
