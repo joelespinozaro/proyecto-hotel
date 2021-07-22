@@ -1,20 +1,10 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
-}
-
 generator client {
   provider = "prisma-client-js"
 }
 
-enum TipoDocumento {
-  DNI
-  CEX
-  RUC
-  PASAPORTE
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
 model Cliente {
@@ -38,18 +28,12 @@ model Recepcionista {
   Reserva       Reserva[]
 }
 
-enum TipoHabitacion {
-  SIMPLE
-  DOBLE
-  MATRIMONIAL
-}
-
 model Habitacion {
   id             String         @id @default(uuid())
   numHabitacion  String         @unique
   estado         Boolean        @default(true)
-  precio         Float
   tipoHabitacion TipoHabitacion
+  precio         Float
   Reserva        Reserva[]
 }
 
@@ -67,4 +51,15 @@ model Reserva {
   recepcionista   Recepcionista @relation(fields: [idRecepcionista], references: [id])
 }
 
-//TODO completar todos los modelos de la bd
+enum TipoDocumento {
+  DNI
+  CEX
+  RUC
+  PASAPORTE
+}
+
+enum TipoHabitacion {
+  SIMPLE
+  DOBLE
+  MATRIMONIAL
+}

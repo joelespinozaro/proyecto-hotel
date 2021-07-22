@@ -6,12 +6,11 @@ const navigation = [
   { name: "Recepcionista", href: "/recepcionista", current: false },
   { name: "Habitacion", href: "/habitacion", current: false },
   { name: "Reservas", href: "/reservas", current: false },
-
 ];
 
 export default function Home() {
   return (
-    <div>
+    <div className="mt-3">
       <ul>
         {navigation.map((item) => (
           <li key={item.name}>
