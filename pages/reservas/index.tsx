@@ -21,11 +21,18 @@ const navigation = [
 ];
 
 export default function Reservas({ reservas }) {
-  console.log(reservas);
-  const handleTrashClick = async (id: string) => {
+  const handleTrashClick = async (reserva:any) => {
     if (window.confirm("Do you want to delete this record?")) {
       try {
-        const body = { id };
+        const body = { id : reserva.id };
+        const resultS = await fetch(`/api/habitacion/updateStatus`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            id: reserva.habitacion.id,
+            estado: true
+          }),
+        });
         const result = await fetch(`/api/reservas/delete`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -106,7 +113,7 @@ export default function Reservas({ reservas }) {
                 <TrashIcon
                   height={20}
                   color="red"
-                  onClick={() => handleTrashClick(c.id)}
+                  onClick={() => handleTrashClick(c)}
                   cursor="pointer"
                 />
               </div>
