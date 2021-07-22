@@ -228,7 +228,7 @@ const FacturaComponent = () => {
                     <button className="btn btn-outline-primary" onClick={(e) => emitirFactura(e)}>Emitir factura</button>
                 </div>
             </form>
-            <button onClick={()=>console.log(total)}>prueba</button>
+            
         </div>
     )
 }
