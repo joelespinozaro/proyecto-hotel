@@ -13,6 +13,7 @@ export default function Home({ clientes }:HomeProps) {
     <div>
             <ComponenteKenny/>
             
+            
     </div>
    
   )

@@ -1,0 +1,17 @@
+.formContainer{
+    width: 40%;
+    height: auto;
+    text-align: center;
+    margin: 20px auto;
+}
+
+.container{
+    width: 100%;
+}
+
+.buttonsContainer{
+    margin:0 auto;
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+}
