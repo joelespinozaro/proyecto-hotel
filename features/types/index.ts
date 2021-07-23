@@ -41,9 +41,9 @@ export interface Reserva {
   createdAt: Date;
   updatedAt: Date;
   estado: boolean;
-  cliente: Cliente[] | null;
-  habitacion: Habitacion[] | null;
-  recepcionista: Recepcionista[] | null;
+  cliente: Cliente | null;
+  habitacion: Habitacion | null;
+  recepcionista: Recepcionista | null;
 }
 
 export type Navigation = {
