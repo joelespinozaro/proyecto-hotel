@@ -5,8 +5,9 @@ import { Reserva } from "../../features/types";
 import { Button, Col, ListGroup, Row } from "react-bootstrap";
 import ItemContainer from "../../features/common/ItemContainer";
 import CardItem from "../../features/common/CardItem";
-import { TrashIcon } from "@heroicons/react/outline";
+import { DocumentDownloadIcon, TrashIcon } from "@heroicons/react/outline";
 import LinkEditItem from "../../features/common/LinkEditItem";
+import LinkDownloadItem from "../../features/common/LinkDownloadItem";
 import ClientAPI from "../../features/api/client";
 import Breadcrumbs from "../../features/common/Breadcrumbs";
 import Link from "next/link";
@@ -21,16 +22,16 @@ const navigation = [
 ];
 
 export default function Reservas({ reservas }) {
-  const handleTrashClick = async (reserva:any) => {
+  const handleTrashClick = async (reserva: any) => {
     if (window.confirm("Do you want to delete this record?")) {
       try {
-        const body = { id : reserva.id };
+        const body = { id: reserva.id };
         const resultS = await fetch(`/api/habitacion/updateStatus`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             id: reserva.habitacion.id,
-            estado: true
+            estado: true,
           }),
         });
         const result = await fetch(`/api/reservas/delete`, {
@@ -106,6 +107,9 @@ export default function Reservas({ reservas }) {
               />
             </Col>
             <Col md={2} className="d-flex flex-row justify-content-end">
+              <div className="mx-2">
+                <LinkDownloadItem url={`/reservas/${c.id}`} />
+              </div>
               <div className="mx-2">
                 <LinkEditItem url={`/reservas/${c.id}`} />
               </div>
