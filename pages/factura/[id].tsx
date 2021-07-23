@@ -5,6 +5,7 @@ import LoadingScreen from "../../components/LoadingScreen";
 import { GetServerSideProps } from "next";
 import prisma from "../../lib/prisma";
 import { Reserva } from "../../features/types";
+import Router from "next/router";
 
 interface Factura {
   dias?: number;
@@ -17,6 +18,8 @@ type ReservaProps = {
 };
 
 const FacturaComponent = ({ reserva }: ReservaProps) => {
+
+  console.log(reserva,'alva')
   const [arrayFactura, setArrayFactura] = useState<Factura[]>([
     {
       dias: "1",
@@ -65,8 +68,7 @@ const FacturaComponent = ({ reserva }: ReservaProps) => {
     doc.text(
       20,
       55,
-      `Número factura: ${
-        Math.floor(Math.random() * (99999999 - 10000000)) + 10000000
+      `Número factura: ${Math.floor(Math.random() * (99999999 - 10000000)) + 10000000
       }`
     );
     doc.setFontSize(10);
@@ -192,6 +194,7 @@ const FacturaComponent = ({ reserva }: ReservaProps) => {
 
     doc.save("factura.pdf");
     setLoading(false);
+    Router.push(`/reservas`);
   };
 
   return (
@@ -220,6 +223,7 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
       habitacion: true,
       fechaInicio: true,
       fechaFin: true,
+      estado : true
     },
     where: {
       id: String(query?.id),

@@ -66,3 +66,18 @@ select,input{
   opacity: 0.5;
   pointer-events: none;
 }
+
+.success{
+  border-left: 15px solid rgb(40, 167, 69);
+  border-radius: 50px;
+  height: 15px;
+  position: absolute;
+  top: 10px;
+}
+.pending{
+  border-left: 15px solid red;
+  border-radius: 50px;
+  height: 15px;
+  position: absolute;
+  top: 10px;
+}

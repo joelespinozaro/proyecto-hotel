@@ -31,7 +31,7 @@ const LoginForm = (props) => {
       {/* <ListErrors errors={errors} /> */}
 
       <fieldset>
-        <fieldset className="form-group">
+        <fieldset className="form-group mt-2">
           <input
             className="form-control form-control-lg"
             type="text"
@@ -52,7 +52,7 @@ const LoginForm = (props) => {
         </fieldset>
 
         <button
-          className="btn btn-lg btn-primary pull-xs-right"
+          className="btn btn-lg btn-primary pull-xs-right mt-2"
           type="submit"
           onClick={handleSubmit}
         >
