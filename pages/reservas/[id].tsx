@@ -28,13 +28,14 @@ export default function GenerarReservaPage({ habitacion, clientes, reserva }) {
     const [fechaInicio, setFechaInicio] = useState(reserva?.fechaInicio || dateTransform());
     const [fechaFin, setFechaFin] = useState(reserva?.fechaFin || dateTransform());
 
-    console.log(reserva)
+
     const generarReserva = async () => {
+        const recepcionistaId = JSON.parse(localStorage.getItem('recepcionista')).id
         try {
             const body = {
                 idCliente: idCliente,
                 idHabitacion: habitacion.id,
-                idRecepcionista: idRecepcionista,
+                idRecepcionista: recepcionistaId,
                 fechaInicio: fechaInicio,
                 fechaFin: fechaFin,
                 id: reserva?.id || null
@@ -43,8 +44,8 @@ export default function GenerarReservaPage({ habitacion, clientes, reserva }) {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
-                    id : habitacion.id,
-                    estado : false
+                    id: habitacion.id,
+                    estado: false
                 }),
             });
             const result = await fetch(`/api/reservas/${reserva ? "update" : "new"}`, {

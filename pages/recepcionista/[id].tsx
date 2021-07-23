@@ -60,7 +60,7 @@ export default function RecepcionistaPage({ recepcionista }: RecepcionistaPagePr
     const updateRecepcionista = {
       id: recepcionista.id,
       nombres: nombres || recepcionista.nombres,
-      apellidos: apellidos || clirecepcionistaent.apellidos,
+      apellidos: apellidos || recepcionista.apellidos,
       numDoc: numDoc || recepcionista.numDoc,
       tipoDoc: tipoDoc || recepcionista.tipodocumento,
     };
