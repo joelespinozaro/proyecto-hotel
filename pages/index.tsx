@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Nav } from "react-bootstrap";
 
+
 const navigation = [
   { name: "Clientes", href: "/client", current: false },
   { name: "Recepcionista", href: "/recepcionista", current: false },
