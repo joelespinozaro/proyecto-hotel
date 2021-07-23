@@ -1,26 +1,26 @@
-import { GetStaticProps } from 'next'
-import prisma from '../lib/prisma'
-import { Cliente } from '../types';
-import Titulo from '../components/Titulo';
-import ComponenteKenny from '../components/ComponenteKenny';
+import Link from "next/link";
+import { Nav } from "react-bootstrap";
 
-type HomeProps = {
-  clientes: Cliente[];
-}
 
-export default function Home({ clientes }:HomeProps) {
+const navigation = [
+  { name: "Clientes", href: "/client", current: false },
+  { name: "Recepcionista", href: "/recepcionista", current: false },
+  { name: "Habitacion", href: "/habitacion", current: false },
+  { name: "Reservas", href: "/reservas", current: false },
+];
+
+export default function Home() {
   return (
-    <div>
-            <ComponenteKenny/>
-            
-            
+    <div className="mt-3">
+      <ul>
+        {navigation.map((item) => (
+          <li key={item.name}>
+            <Link href={item.href} as={item.href} passHref>
+              <Nav.Link href="#">{item.name}</Nav.Link>
+            </Link>
+          </li>
+        ))}
+      </ul>
     </div>
-   
-  )
-
-}
-
-export const getStaticProps: GetStaticProps = async () =>{
-  // const clientes = await prisma.$queryRaw('SELECT * FROM Cliente;');
-   return { props: {} }
+  );
 }

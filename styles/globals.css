@@ -15,7 +15,6 @@ a {
   box-sizing: border-box;
 }
 
-
 #cover-spin {
   position:fixed;
   width:100%;
@@ -48,4 +47,22 @@ to {transform:rotate(360deg);}
   border-radius:50%;
   -webkit-animation: spin .8s linear infinite;
   animation: spin .8s linear infinite;
+}
+.textHeader {
+  font-size: 17px;
+  letter-spacing: 0.4em;
+  color: #d74346;
+  text-transform: uppercase;
+  text-align: center;
+  padding-top: 2em;
+}
+select,input{
+  height: 38px;
+  border: 1px solid #ced4d9;
+  border-radius: 4px;
+  width: 100%;
+}
+.disabled {
+  opacity: 0.5;
+  pointer-events: none;
 }

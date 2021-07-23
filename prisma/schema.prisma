@@ -1,70 +1,50 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
+generator client {
+  provider = "prisma-client-js"
+}
 
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
-generator client {
-  provider = "prisma-client-js"
-}
-
-model TipoDocumento {
-  id            Int             @id @default(autoincrement())
-  tag           String
-  descripcion   String
-  Cliente       Cliente[]
-  recepcionista Recepcionista[]
-}
-
 model Cliente {
-  id            Int           @id @default(autoincrement())
+  id            String        @id @default(uuid())
   nombres       String
   apellidos     String
-  tipoDoc       Int
   numDoc        String        @unique
   sexo          String
   telefono      Int
   email         String        @unique
-  tipoDocumento TipoDocumento @relation(fields: [tipoDoc], references: [id])
+  tipoDocumento TipoDocumento
   Reserva       Reserva[]
 }
 
 model Recepcionista {
-  id            Int           @id @default(autoincrement())
+  id            String        @id @default(uuid())
   nombres       String
   apellidos     String
-  tipoDoc       Int
   numDoc        String        @unique
-  tipoDocumento TipoDocumento @relation(fields: [tipoDoc], references: [id])
+  tipoDocumento TipoDocumento
   Reserva       Reserva[]
 }
 
-model TipoHabitacion {
-  id          Int          @id @default(autoincrement())
-  tag         String
-  descripcion String
-  precio      Decimal
-  habitacion  Habitacion[]
-}
-
 model Habitacion {
-  id               Int            @id @default(autoincrement())
-  numHabitacion    String         @unique
-  estado           Boolean        @default(true)
-  idTipoHabitacion Int
-  tipoHabitacion   TipoHabitacion @relation(fields: [idTipoHabitacion], references: [id])
-  Reserva          Reserva[]
+  id             String         @id @default(uuid())
+  numHabitacion  String         @unique
+  estado         Boolean        @default(true)
+  tipoHabitacion TipoHabitacion
+  precio         Float
+  Reserva        Reserva[]
 }
 
 model Reserva {
-  id              Int           @id @default(autoincrement())
-  idCliente       Int
-  idHabitacion    Int
-  idRecepcionista Int
-  fechaInicio     DateTime
-  fechaFin        DateTime
+  id              String        @id @default(uuid())
+  idCliente       String
+  idHabitacion    String
+  idRecepcionista String
+  fechaInicio     String
+  fechaFin        String
+  estado          Boolean       @default(true)
   createdAt       DateTime      @default(now())
   updatedAt       DateTime      @updatedAt
   cliente         Cliente       @relation(fields: [idCliente], references: [id])
@@ -72,7 +52,15 @@ model Reserva {
   recepcionista   Recepcionista @relation(fields: [idRecepcionista], references: [id])
 }
 
-model Test {
-  id     Int    @id @default(autoincrement())
-  nombre String
+enum TipoDocumento {
+  DNI
+  CEX
+  RUC
+  PASAPORTE
+}
+
+enum TipoHabitacion {
+  SIMPLE
+  DOBLE
+  MATRIMONIAL
 }
