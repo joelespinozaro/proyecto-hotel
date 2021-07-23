@@ -1,10 +1,8 @@
-/* This example requires Tailwind CSS v2.0+ */
-import { Fragment, useState } from "react";
 import { Container, Navbar, NavDropdown, Nav } from "react-bootstrap";
-import { BellIcon, MenuIcon, XIcon } from "@heroicons/react/outline";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import useRouteUrlHistory from "../../lib/hooks/useRouteUrlHistory";
+import { signOut, useSession } from "next-auth/client";
 
 const navigation = [{ name: "Home", href: "/", current: false }];
 
@@ -16,7 +14,9 @@ export default function NavbarComponent() {
   const user = true;
   const { previousRoute } = useRouteUrlHistory();
   const router = useRouter();
+  const [session, loading] = useSession();
 
+  if (loading) return <p>Loading</p>;
   return (
     <>
       <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
@@ -42,12 +42,20 @@ export default function NavbarComponent() {
               ))}
             </Nav>
             <Nav>
-              <Link href="/user/login" as="/user/login" passHref>
-                <Nav.Link href="#">Sign in</Nav.Link>
-              </Link>
-              <Link href="/user/register" as="/user/register" passHref>
-                <Nav.Link href="#">Sign up</Nav.Link>
-              </Link>
+              {!session ? (
+                <>
+                  <Link href="/user/login" passHref>
+                    <Nav.Link href="#">Sign in</Nav.Link>
+                  </Link>
+                  <Link href="/user/register" as="/user/register" passHref>
+                    <Nav.Link href="#">Sign up</Nav.Link>
+                  </Link>
+                </>
+              ) : (
+                <p>
+                  {session.user.name} ({session.user.email}){" "}
+                </p>
+              )}
             </Nav>
           </Navbar.Collapse>
         </Container>
