@@ -225,6 +225,22 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
       id: String(query?.id),
     },
   });
+  await prisma.reserva.update({
+    data: {
+      estado: true,
+    },
+    where: {
+      id: String(query?.id),
+    },
+  });
+  await prisma.habitacion.update({
+    data: {
+      estado: true,
+    },
+    where: {
+      id: reserva.habitacion.id,
+    },
+  });
   return {
     props: {
       reserva,

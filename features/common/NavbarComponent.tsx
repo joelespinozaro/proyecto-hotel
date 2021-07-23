@@ -4,7 +4,11 @@ import Link from "next/link";
 import useRouteUrlHistory from "../../lib/hooks/useRouteUrlHistory";
 import { signOut, useSession } from "next-auth/client";
 
-const navigation = [{ name: "Home", href: "/", current: false }];
+const navigation = [
+  { name: "Reservas", href: "/reservas", current: false },
+  { name: "Nueva Reserva", href: "/reservas/new", current: false },
+  { name: "Mantenimiento", href: "/", current: false },
+];
 
 function classNames(...classes: any) {
   return classes.filter(Boolean).join(" ");
@@ -47,9 +51,9 @@ export default function NavbarComponent() {
                   <Link href="/user/login" passHref>
                     <Nav.Link href="#">Sign in</Nav.Link>
                   </Link>
-                  <Link href="/user/register" as="/user/register" passHref>
+                  {/* <Link href="/user/register" as="/user/register" passHref>
                     <Nav.Link href="#">Sign up</Nav.Link>
-                  </Link>
+                  </Link> */}
                 </>
               ) : (
                 <p>
