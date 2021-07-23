@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev -p 3005",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -13,12 +13,16 @@
     "@prisma/client": "^2.27.0",
     "axios": "^0.21.1",
     "bootstrap": "^4.6.0",
+    "jspdf": "^2.3.1",
+    "loading-screen-kraenau": "^2.2.0",
     "next": "11.0.1",
     "next-auth": "^3.27.3",
     "react": "17.0.2",
     "react-bootstrap": "^1.6.1",
     "react-dom": "17.0.2",
-    "swr": "^0.5.6"
+    "swr": "^0.5.6",
+    "react-router": "^5.2.0",
+    "sweetalert2": "^11.0.19"
   },
   "devDependencies": {
     "@types/react": "17.0.13",
