@@ -108,7 +108,7 @@ export default function Reservas({ reservas }) {
             </Col>
             <Col md={2} className="d-flex flex-row justify-content-end">
               <div className="mx-2">
-                <LinkDownloadItem url={`/reservas/${c.id}`} />
+                <LinkDownloadItem url={`/factura/${c.id}`} />
               </div>
               <div className="mx-2">
                 <LinkEditItem url={`/reservas/${c.id}`} />
