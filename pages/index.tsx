@@ -9,9 +9,9 @@ const navigation = [
   { name: "Habitacion", href: "/habitacion", current: false },
 ];
 
-export default function Home() {
-  const router = useRouter();
+export default function Home(props) {
   const [dataR, setDataR] = useState(null);
+  const router = useRouter();
 
   useEffect(() => {
     const dataR = localStorage.getItem("recepcionista")

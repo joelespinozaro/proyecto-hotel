@@ -6,7 +6,6 @@ import prisma from "../../lib/prisma";
 import { Habitacion, Cliente } from "../../features/types";
 import { GetServerSideProps } from "next";
 import Link from "next/link";
-const logo = require("./images/simple.jpeg");
 
 const navigation = [
   { name: "Home", href: "/", current: false },
