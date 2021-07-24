@@ -4,7 +4,7 @@ import { Button, Col, Form, Row, Spinner } from "react-bootstrap";
 import { GetServerSideProps, GetStaticProps } from "next";
 import { Cliente, Recepcionista } from "../../features/types";
 import ClientAPI from "../../features/api/client";
-import Breadcrumbs from "../../features/common/Breadcrumbs";
+import Breadcrumbs from "../../components/BBreadCrumbs";
 import prisma from "../../lib/prisma";
 import RecepcionistaAPI from "../../features/api/recepcionista";
 
@@ -18,7 +18,9 @@ const navigation = [
   { name: "Update Recepcionista", href: "", current: true },
 ];
 
-export default function RecepcionistaPage({ recepcionista }: RecepcionistaPageProps) {
+export default function RecepcionistaPage({
+  recepcionista,
+}: RecepcionistaPageProps) {
   const [nombres, setNombres] = useState("");
   const [apellidos, setApellidos] = useState("");
   const [email, setEmail] = useState("");
@@ -97,8 +99,6 @@ export default function RecepcionistaPage({ recepcionista }: RecepcionistaPagePr
             />
           </Form.Group>
 
-         
-
           <Form.Group as={Col} controlId="ControlSelectTDoc">
             <Form.Label>Tipo de documento</Form.Label>
             <Form.Control
@@ -122,8 +122,6 @@ export default function RecepcionistaPage({ recepcionista }: RecepcionistaPagePr
               onChange={handleNumDocChange}
             />
           </Form.Group>
-
-     
         </Row>
 
         <Button variant="primary" type="submit">

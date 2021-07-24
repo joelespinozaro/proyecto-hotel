@@ -1,7 +1,7 @@
 import Router, { useRouter } from "next/router";
 import React, { useCallback, useState } from "react";
 import { Button, Col, Form, Row, Spinner, Card } from "react-bootstrap";
-import Breadcrumbs from "../../features/common/BreadCrumbs";
+import Breadcrumbs from "../../components/BBreadCrumbs";
 import prisma from "../../lib/prisma";
 import { Habitacion, Cliente } from "../../features/types";
 import { GetServerSideProps } from "next";

@@ -2,7 +2,7 @@ import Router, { useRouter } from "next/router";
 import React, { useCallback, useState } from "react";
 import { Button, Col, Form, Row, Spinner } from "react-bootstrap";
 import ClientAPI from "../../features/api/client";
-import Breadcrumbs from "../../features/common/BreadCrumbs";
+import Breadcrumbs from "../../components/BBreadCrumbs";
 
 const navigation = [
   { name: "Home", href: "/", current: false },

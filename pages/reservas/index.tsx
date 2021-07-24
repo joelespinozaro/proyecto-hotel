@@ -9,7 +9,7 @@ import { DocumentDownloadIcon, TrashIcon } from "@heroicons/react/outline";
 import LinkEditItem from "../../features/common/LinkEditItem";
 import LinkDownloadItem from "../../features/common/LinkDownloadItem";
 import ClientAPI from "../../features/api/client";
-import Breadcrumbs from "../../features/common/Breadcrumbs";
+import Breadcrumbs from "../../components/BBreadCrumbs";
 import Link from "next/link";
 
 type ReservasProps = {
@@ -22,7 +22,7 @@ const navigation = [
 ];
 
 export default function Reservas({ reservas }) {
-  console.log(reservas)
+  console.log(reservas);
   const handleTrashClick = async (reserva: any) => {
     if (window.confirm("Do you want to delete this record?")) {
       try {
@@ -63,11 +63,8 @@ export default function Reservas({ reservas }) {
       <ListGroup>
         {reservas.map((c) => (
           <ItemContainer key={c.id}>
-
-
-            <Col md={2} style={{    textAlign: 'center'}}>
-              <div className={c.estado ? "success" : "pending"}>
-              </div>
+            <Col md={2} style={{ textAlign: "center" }}>
+              <div className={c.estado ? "success" : "pending"}></div>
               <CardItem
                 title="Cliente"
                 value={`${c.cliente.nombres} ${c.cliente.apellidos}`}
@@ -143,7 +140,7 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
       habitacion: true,
       fechaInicio: true,
       fechaFin: true,
-      estado: true
+      estado: true,
     },
   });
   return {

@@ -1,14 +1,13 @@
 import Router from "next/router";
 import prisma from "../../lib/prisma";
 import { GetServerSideProps } from "next";
-import { Cliente,Recepcionista } from "../../features/types";
+import { Cliente, Recepcionista } from "../../features/types";
 import { Button, Col, ListGroup, Row } from "react-bootstrap";
 import ItemContainer from "../../features/common/ItemContainer";
 import CardItem from "../../features/common/CardItem";
 import { TrashIcon } from "@heroicons/react/outline";
 import LinkEditItem from "../../features/common/LinkEditItem";
-import ClientAPI from "../../features/api/client";
-import Breadcrumbs from "../../features/common/Breadcrumbs";
+import Breadcrumbs from "../../components/BBreadCrumbs";
 import Link from "next/link";
 import RecepcionistaAPI from "../../features/api/recepcionista";
 
