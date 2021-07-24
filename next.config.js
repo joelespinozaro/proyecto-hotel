@@ -8,6 +8,6 @@ module.exports = {
     ignoreBuildErrors: true,
   },
   images: {
-    domains: ["http://losflamencoshotel.com"],
+    domains: ["https://dynamic-media-cdn.tripadvisor.com/"],
   },
 };
