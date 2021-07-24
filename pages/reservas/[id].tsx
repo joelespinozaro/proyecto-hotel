@@ -88,11 +88,11 @@ export default function GenerarReservaPage({ habitacion, clientes, reserva }) {
   const getImage = (tipo) => {
     switch (tipo) {
       case "SIMPLE":
-        return "http://losflamencoshotel.com/uploads/images/gallery/2.jpg";
+        return "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1b/6d/6b/1d/casa-andina-premium-san.jpg?w=1400&h=-1&s=1";
       case "DOBLE":
-        return "http://losflamencoshotel.com/uploads/images/gallery/3.jpg";
+        return "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1a/97/35/59/disfruta-de-una-experiencia.jpg?w=1400&h=-1&s=1";
       case "MATRIMONIAL":
-        return "http://losflamencoshotel.com/uploads/images/gallery/6.jpg";
+        return "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1b/6d/6b/0c/casa-andina-premium-san.jpg?w=1400&h=-1&s=1";
       default:
         break;
     }
