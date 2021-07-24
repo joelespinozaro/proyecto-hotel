@@ -6,7 +6,6 @@ import { mutate } from "swr";
 import UserAPI from "../../features/api/user";
 
 const LoginForm = (props) => {
-
   const { handleLogin } = props;
   const [isLoading, setLoading] = React.useState(false);
   const [errors, setErrors] = React.useState([]);
@@ -23,14 +22,14 @@ const LoginForm = (props) => {
   );
 
   const handleSubmit = async (e) => {
-    handleLogin(email, password)
+    handleLogin(email, password);
   };
 
   return (
     <>
       {/* <ListErrors errors={errors} /> */}
 
-      <fieldset>
+      <fieldset style={{ marginBottom: 40 }}>
         <fieldset className="form-group mt-2">
           <input
             className="form-control form-control-lg"
@@ -56,7 +55,7 @@ const LoginForm = (props) => {
           type="submit"
           onClick={handleSubmit}
         >
-          Iniciar sesion
+          Iniciar sesión
         </button>
       </fieldset>
     </>

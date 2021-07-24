@@ -46,10 +46,10 @@ export interface Reserva {
   recepcionista: Recepcionista | null;
 }
 
-export type Navigation = {
+export interface Navigation {
   name: string;
   href: string;
   current: boolean;
-};
+}
 
 //TODO completar los types de los modelos de la db

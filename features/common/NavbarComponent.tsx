@@ -10,7 +10,6 @@ const navigation = [
   { name: "Reservas", href: "/reservas", current: false },
   { name: "Nueva Reserva", href: "/reservas/new", current: false },
   { name: "Mantenimiento", href: "/", current: false },
-
 ];
 
 function classNames(...classes: any) {
@@ -23,19 +22,19 @@ export default function NavbarComponent(props) {
   const router = useRouter();
   const [session, loading] = useSession();
 
-  const [dataR, setDataR] = useState(null)
-
+  const [dataR, setDataR] = useState(null);
 
   useEffect(() => {
-    const dataR = localStorage.getItem('recepcionista') ? JSON.parse(localStorage.getItem('recepcionista')) : null
-    setDataR(dataR)
-  }, [props])
-
+    const dataR = localStorage.getItem("recepcionista")
+      ? JSON.parse(localStorage.getItem("recepcionista"))
+      : null;
+    setDataR(dataR);
+  }, [props]);
 
   const handleCerrarSesion = () => {
-    setDataR(null)
-    localStorage.clear()
-  }
+    setDataR(null);
+    localStorage.clear();
+  };
 
   if (loading) return <p>Loading</p>;
   return (
@@ -45,13 +44,15 @@ export default function NavbarComponent(props) {
           <Navbar.Brand>Proyecto Hotel</Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav d-flex justify-content-between">
-            {
-
-              dataR &&
-
+            {dataR && (
               <Nav className="me-auto">
                 {navigation.map((item) => (
-                  <Link href={item.href} as={item.href} key={item.name} passHref>
+                  <Link
+                    href={item.href}
+                    as={item.href}
+                    key={item.name}
+                    passHref
+                  >
                     <Nav.Link
                       href="#"
                       className={classNames(
@@ -66,35 +67,43 @@ export default function NavbarComponent(props) {
                   </Link>
                 ))}
               </Nav>
-            }
+            )}
 
-            <Nav style={{
-              position: 'absolute',
-              right: '10px'
-            }}>
+            <Nav
+              style={{
+                position: "absolute",
+                right: "10px",
+              }}
+            >
               {!session ? (
                 <>
-
-                  {
-                    dataR &&
+                  {dataR && (
                     <>
-                      <p style={{
-                        color: 'rgb(233 236 239)',
-                        textTransform: 'capitalize',
-                        marginRight: '32px'
-                      }}>Bienvenido - {`${dataR.nombres} ${dataR.apellidos}`}</p>
+                      <p
+                        className="fw-bolder"
+                        style={{
+                          color: "rgb(233 236 239)",
+                          textTransform: "capitalize",
+                          margin: "auto",
+                          fontWeight: 700,
+                        }}
+                      >
+                        Bienvenido - {`${dataR.nombres} ${dataR.apellidos}`}
+                      </p>
                     </>
-                  }
+                  )}
                   {
-                    dataR &&
-                    <Link href="/user/login" passHref>
-                      <Nav.Link href="#" onClick={handleCerrarSesion}>Cerrar Sesion</Nav.Link>
-                    </Link>
+                    dataR && (
+                      <Link href="/user/login" passHref>
+                        <Nav.Link href="#" onClick={handleCerrarSesion}>
+                          Cerrar Sesion
+                        </Nav.Link>
+                      </Link>
+                    )
                     //: <Link href="/user/login" passHref>
                     //   <Nav.Link href="#">Iniciar Sesion</Nav.Link>
                     // </Link>
                   }
-
                 </>
               ) : (
                 <p>

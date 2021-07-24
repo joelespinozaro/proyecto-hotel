@@ -4,7 +4,7 @@ import { Button, Col, Form, Row, Spinner } from "react-bootstrap";
 import { GetServerSideProps, GetStaticProps } from "next";
 import { Cliente } from "../../features/types";
 import ClientAPI from "../../features/api/client";
-import Breadcrumbs from "../../features/common/Breadcrumbs";
+import Breadcrumbs from "../../features/common/BreadCrumbs";
 import prisma from "../../lib/prisma";
 
 type ClientPageProps = {

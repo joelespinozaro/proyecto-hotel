@@ -8,7 +8,7 @@ import CardItem from "../../features/common/CardItem";
 import { TrashIcon } from "@heroicons/react/outline";
 import LinkEditItem from "../../features/common/LinkEditItem";
 import ClientAPI from "../../features/api/client";
-import Breadcrumbs from "../../features/common/Breadcrumbs";
+import Breadcrumbs from "../../features/common/BreadCrumbs";
 import Link from "next/link";
 
 type ClientProps = {

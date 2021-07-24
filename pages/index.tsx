@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 import { Nav } from "react-bootstrap";
 
 const navigation = [
@@ -8,6 +10,16 @@ const navigation = [
 ];
 
 export default function Home() {
+  const router = useRouter();
+  const [dataR, setDataR] = useState(null);
+
+  useEffect(() => {
+    const dataR = localStorage.getItem("recepcionista")
+      ? JSON.parse(localStorage.getItem("recepcionista"))
+      : router.push("/user/login");
+    setDataR(dataR);
+  }, []);
+
   return (
     <div className="mt-3">
       <ul>

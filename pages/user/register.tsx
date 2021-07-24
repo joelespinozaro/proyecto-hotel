@@ -1,8 +1,6 @@
 import Head from "next/head";
 import Link from "next/link";
 import React from "react";
-
-// import CustomLink from "../../components/common/CustomLink";
 import RegisterForm from "../../features/common/RegisterForm";
 
 const Register = () => (

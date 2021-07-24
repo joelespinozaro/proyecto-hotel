@@ -10,14 +10,14 @@ const ClientAPI = {
       status,
     };
   },
-  create: async (client: Cliente) => {
+  create: async (client) => {
     const { data, status } = await axios.post(`${URL_API}`, client);
     return {
       data,
       status,
     };
   },
-  update: async (client: Cliente) => {
+  update: async (client) => {
     const { data, status } = await axios.patch(`${URL_API}`, client);
     return {
       data,

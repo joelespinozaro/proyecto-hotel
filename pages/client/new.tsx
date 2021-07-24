@@ -1,11 +1,8 @@
 import Router, { useRouter } from "next/router";
 import React, { useCallback, useState } from "react";
 import { Button, Col, Form, Row, Spinner } from "react-bootstrap";
-import { GetServerSideProps, GetStaticProps } from "next";
-import { Cliente } from "../../features/types";
 import ClientAPI from "../../features/api/client";
-import Breadcrumbs from "../../features/common/Breadcrumbs";
-import prisma from "../../lib/prisma";
+import Breadcrumbs from "../../features/common/BreadCrumbs";
 
 const navigation = [
   { name: "Home", href: "/", current: false },

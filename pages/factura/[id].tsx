@@ -8,9 +8,9 @@ import { Reserva } from "../../features/types";
 import Router from "next/router";
 
 interface Factura {
-  dias?: number;
+  dias?: string;
   descripcion?: string;
-  precio?: number;
+  precio?: string;
 }
 
 type ReservaProps = {
@@ -18,8 +18,7 @@ type ReservaProps = {
 };
 
 const FacturaComponent = ({ reserva }: ReservaProps) => {
-
-  console.log(reserva,'alva')
+  console.log(reserva, "alva");
   const [arrayFactura, setArrayFactura] = useState<Factura[]>([
     {
       dias: "1",
@@ -68,7 +67,8 @@ const FacturaComponent = ({ reserva }: ReservaProps) => {
     doc.text(
       20,
       55,
-      `Número factura: ${Math.floor(Math.random() * (99999999 - 10000000)) + 10000000
+      `Número factura: ${
+        Math.floor(Math.random() * (99999999 - 10000000)) + 10000000
       }`
     );
     doc.setFontSize(10);
@@ -223,7 +223,7 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
       habitacion: true,
       fechaInicio: true,
       fechaFin: true,
-      estado : true
+      estado: true,
     },
     where: {
       id: String(query?.id),

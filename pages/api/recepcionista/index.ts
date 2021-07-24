@@ -40,7 +40,7 @@ export default async function handle(
     const { id } = req.query;
     const deleted = await prisma.recepcionista.delete({
       where: {
-        id: id,
+        id: id.toString(),
       },
     });
     res.json(deleted);
